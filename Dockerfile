@@ -1,11 +1,4 @@
 FROM openjdk:18
 
-WORKDIR /app
-
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:resolve
-
-COPY src ./src
-
-CMD ["./mvnw", "spring-boot:run"]
+ADD target/csv-parser-api.jar csv-parser-api.jar
+ENTRYPOINT ["java", "-jar", "/csv-parser-api.jar"]

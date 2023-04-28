@@ -116,6 +116,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>csv-parser-api</finalName>
     </build>
 
 </project>

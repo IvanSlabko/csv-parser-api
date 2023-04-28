@@ -32,7 +32,7 @@ public class CryptoInitializer {
         for (Resource csvFile : csvFiles) {
             String cryptoName = StringUtils.substringBefore(csvFile.getFilename(), VALUE_SEPARATOR);
             if (SupportedCryptos.contains(cryptoName)) {
-                List<CryptoEntity> cryptoEntityList = cryptoCSVParserService.parse(csvFile.getFile().getPath());
+                List<CryptoEntity> cryptoEntityList = cryptoCSVParserService.parse(csvFile.getInputStream());
                 cryptoService.saveAll(cryptoEntityList);
             }  else {
                 logger.warn("{} is not supported", cryptoName);
