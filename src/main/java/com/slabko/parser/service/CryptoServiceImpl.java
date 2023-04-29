@@ -1,8 +1,8 @@
-package com.slabko.parser.services;
+package com.slabko.parser.service;
 
 import com.slabko.parser.model.CryptoEntity;
 import com.slabko.parser.model.CryptoStatistic;
-import com.slabko.parser.repositories.CryptoRepository;
+import com.slabko.parser.repository.CryptoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +10,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Implementation of CryptoService.
+ */
 @Service
 public class CryptoServiceImpl implements CryptoService {
 

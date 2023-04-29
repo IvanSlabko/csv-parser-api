@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * Model to store crypto statistics.
+ */
 @Data
 public class CryptoStatistic {
 

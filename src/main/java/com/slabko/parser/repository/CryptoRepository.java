@@ -1,4 +1,4 @@
-package com.slabko.parser.repositories;
+package com.slabko.parser.repository;
 
 import com.slabko.parser.model.CryptoEntity;
 import com.slabko.parser.model.CryptoStatistic;
@@ -9,8 +9,18 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Repository for Crypto entity.
+ */
 public interface CryptoRepository extends CrudRepository<CryptoEntity, Long> {
 
+    /**
+     * Calculates oldest/newest/min/max prices for each crypto for the specified period of time.
+     *
+     * @param startDate start date to search with
+     * @param endDate end date to search with
+     * @return List of CryptoStatistic
+     */
     @Query("SELECT new com.slabko.parser.model.CryptoStatistic(MAX(ce.price) AS maxPrice,\n" +
         "       MIN(ce.price) AS minPrice,\n" +
         "       ce.name AS name,\n" +
@@ -36,6 +46,12 @@ public interface CryptoRepository extends CrudRepository<CryptoEntity, Long> {
         " GROUP BY ce.name")
     List<CryptoStatistic> findCryptoStatistics(LocalDateTime startDate, LocalDateTime endDate);
 
+    /**
+     * Calculates the oldest/newest/min/max prices for the requested crypto.
+     *
+     * @param name requsted crypto name
+     * @return List of CryptoStatistic
+     */
     @Query("SELECT new com.slabko.parser.model.CryptoStatistic(MAX(ce.price) AS maxPrice,\n" +
         "       MIN(ce.price) AS minPrice,\n" +
         "       ce.name AS name,\n" +
@@ -54,12 +70,23 @@ public interface CryptoRepository extends CrudRepository<CryptoEntity, Long> {
         " GROUP BY ce.name")
     List<CryptoStatistic> findCryptoStatisticsByName(String name);
 
+    /**
+     * Finds the descending sorted list of all the cryptos, comparing the normalized range (max-min)/min).
+     *
+     * @return List of CryptoStatistic
+     */
     @Query("SELECT new com.slabko.parser.model.CryptoStatistic(MAX(price) AS maxPrice, MIN(price) AS minPrice, name)\n" +
         " FROM CryptoEntity\n" +
         " GROUP BY name\n" +
         " ORDER BY (MAX(price) - MIN(price)) / MIN(price) DESC ")
     List<CryptoStatistic> findCryptoStatisticsSortedByNormalizedRange();
 
+    /**
+     * Finds the crypto with the highest normalized range for a specific date.
+     *
+     * @param date specific date to search with
+     * @return CryptoStatistic
+     */
     @Query("SELECT new com.slabko.parser.model.CryptoStatistic(MAX(price) AS maxPrice, MIN(price) AS minPrice, name)\n" +
         "FROM CryptoEntity\n" +
         "WHERE YEAR(date) = YEAR(:date) and MONTH(date) = MONTH(:date) and DAY(date) = DAY(:date)\n" +

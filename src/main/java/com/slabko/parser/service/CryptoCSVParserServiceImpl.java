@@ -1,4 +1,4 @@
-package com.slabko.parser.services;
+package com.slabko.parser.service;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.slabko.parser.mapper.CryptoMapper;
@@ -11,6 +11,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
+/**
+ * Implementation of CryptoCSVParserService.
+ */
 @Service
 public class CryptoCSVParserServiceImpl implements CryptoCSVParserService {
 

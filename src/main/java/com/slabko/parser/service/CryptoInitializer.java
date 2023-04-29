@@ -1,4 +1,4 @@
-package com.slabko.parser.services;
+package com.slabko.parser.service;
 
 import com.slabko.parser.model.CryptoEntity;
 import com.slabko.parser.model.SupportedCryptos;
@@ -14,6 +14,9 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Component for initializing crypto data.
+ */
 @Component
 public class CryptoInitializer {
 
@@ -27,6 +30,11 @@ public class CryptoInitializer {
 
     private static final String VALUE_SEPARATOR = "_values.csv";
 
+    /**
+     * Initializing crypto data.
+     *
+     * @throws IOException
+     */
     @PostConstruct
     public void init() throws IOException {
         for (Resource csvFile : csvFiles) {

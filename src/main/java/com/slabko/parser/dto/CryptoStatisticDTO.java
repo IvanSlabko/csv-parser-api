@@ -1,10 +1,13 @@
-package com.slabko.parser.dtos;
+package com.slabko.parser.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * DTO to represent crypto statistic.
+ */
 @Data
 public class CryptoStatisticDTO {
 

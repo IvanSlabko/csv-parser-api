@@ -12,6 +12,9 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * Crypto entity representation in database.
+ */
 @Getter
 @Setter
 @Entity
